@@ -2,9 +2,8 @@ import pytest
 
 
 class TestAPIAuthRegister:
-    """Testing /api/auth/register/ api."""
 
-    API_PATH = '/api/auth/register/'
+    API_PATH = '/signup/'
 
     def test_allowed_methods_request(self, client):
         response = client.get(self.API_PATH)
@@ -24,11 +23,10 @@ class TestAPIAuthRegister:
             'password': '1234567890',
             'username': 'test_user',
             # optional fields
-            'first_name': 'Ta',
-            'last_name': 'Tb',
-            'image': '',
+            # 'avatar': '',
         }
         response = client.post(self.API_PATH, test_user)
         assert response.status_code == 201
+        print(response.json())
 
-        assert not ('password' in response.data['User'])
+        assert not ('password' in response.data)

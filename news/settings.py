@@ -4,12 +4,10 @@ from dotenv import load_dotenv
 
 from datetime import timedelta
 
-
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -82,26 +80,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'news.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        # 'ENGINE': os.getenv('ENGINE'),
+        # 'NAME': os.getenv('DB_NAME'),
+        # 'USER': os.getenv('DB_USER'),
+        # 'PASSWORD': os.getenv('DB_PASSWORD'),
+        # 'HOST': os.getenv('DB_HOST'),
+        # 'PORT': os.getenv('DB_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'news.db'),
     }
 }
 
-
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny', 
+        'rest_framework.permissions.AllowAny',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -115,15 +112,11 @@ REST_FRAMEWORK = {
     ],
 }
 
-
 SIMPLE_JWT = {
-   'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
-   'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Token',),
 }
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -143,7 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -154,7 +146,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
